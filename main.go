@@ -1,42 +1,12 @@
 package main
 
 import (
-	"fmt"
+	"net/http"
 
-	"github.com/pluralsight/webservice/models"
+	"github.com/pluralsight/webservice/controllers"
 )
 
 func main() {
-
-	arr := [3]string{}
-	arr[0] = "apple"
-	arr[1] = "plum"
-	arr[2] = "orange"
-	fmt.Println(arr)
-
-	b := contains(arr, "plum")
-	fmt.Println(b)
-
-	b = contains(arr, "grape")
-	fmt.Println(b)
-
-	u := models.User{
-		ID:        2,
-		FirstName: "Marzia",
-		LastName:  "Azam",
-	}
-	fmt.Println(u)
-}
-
-func GetUsers() []*User {
-	return users
-}
-
-func contains(arr [3]string, str string) bool {
-	for _, a := range arr {
-		if a == str {
-			return true
-		}
-	}
-	return false
+	controllers.RegisterControllers()
+	http.ListenAndServe(":3000", nil)
 }
